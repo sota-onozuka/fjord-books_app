@@ -1,3 +1,4 @@
+
 # Files in the config/locales directory are used for internationalization
 # and are automatically loaded by Rails. If you want to use locales other
 # than English, add the necessary files in this directory.
@@ -30,47 +31,45 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 
-
-
-#en:
-#  books: "Books"
-#  title: "Title"
-#  memo: "Memo"
-#  author: "Author"
-#  picture: "Picture"
-#  show: "Show"
-#  back: "Back"
-#  edit: "Edit"
-#  destroy: "Destroy"
-#  new_book: "New book"
-#  editting_book: "Editting book"
-#  update: "Update book"
-#  create: "Create book"
-en:
-  books: "Books"
+#ja:
+#  books: "本棚"
+#  title: "タイトル"
+#  memo: "メモ"
+#  author: "著者"
+#  picture: "写真"
+#  show: "表示"
+#  back: "戻る"
+#  edit: "編集"
+#  destroy: "削除"
+#  new_book: "本の追加"
+#  editting_book: "本の修正"
+#  update: "本の修正"
+#  create: "本の作成"
+ja:
+  books: "本棚"
   book:
-    title: "Title"
-    memo: "Memo"
-    author: "Author"
-    picture: "Picture"
+    title: "タイトル"
+    memo: "メモ"
+    author: "著者"
+    picture: "写真"
   event:
-    show: "Show"
-    back: "Back"
-    edit: "Edit"
-    destroy: "Destroy"
+    show: "表示"
+    back: "戻る"
+    edit: "編集"
+    destroy: "削除"
   response: 
-    new_book: "New book"
-    editting_book: "Editting book"
+    new_book: "本の追加"
+    editting_book: "本の修正"
   helpers:
     submit:
-      update: "Update"
-      create: "Create"
+      update: "本の更新"
+      create: "本の作成"
   notice:
-    book: "Book "
-    success: "was successfully "
-    create: "created."
-    destroy: "destroyed."
-    update: "updated."
+    book: "本"
+    success: "は確かに"
+    create: "作成されました。"
+    destroy: "消去されました。"
+    update: "更新されました。"
   alart:
-    confirm: "Are you sure?"
-    prohibited: "Prohibited this book from being saved:"
+    confirm: "本当にいいですか？"
+    prohibited: "保存できませんでした。"
