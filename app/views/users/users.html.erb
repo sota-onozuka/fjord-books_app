@@ -1,0 +1,27 @@
+
+<h1><%= User.model_name.human %></h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th><%= User.human_attribute_name(:name) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+     <tr>
+      <td><%= user.name %></td>
+        <td><%= link_to t('views.common.show'), "/users/user/#{user.id}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @userss %>
+
+<%= link_to '本の一覧', '/books' %></td>
+
+
+
