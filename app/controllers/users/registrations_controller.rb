@@ -60,15 +60,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
   protected
+
   def update_resource(resource, params)
     resource.update_without_password(params)
   end
-  #アカウント登録後のリダイレクト先
-  def  after_sign_up_path_for(resource)
+
+  # アカウント登録後のリダイレクト先
+  def after_sign_up_path_for(_resource)
     '/books'
   end
- #アカウント編集後のリダイレクト先. これだけなぜか行けてる
-  def after_update_path_for(resource)
+
+  # アカウント編集後のリダイレクト先. これだけなぜか行けてる
+  def after_update_path_for(_resource)
     '/books'
   end
 end
