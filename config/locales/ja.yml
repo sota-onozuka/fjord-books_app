@@ -1,63 +1,19 @@
-
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
-
-#ja:
-#  books: "本棚"
-#  title: "タイトル"
-#  memo: "メモ"
-#  author: "著者"
-#  picture: "写真"
-#  show: "表示"
-#  back: "戻る"
-#  edit: "編集"
-#  destroy: "削除"
-#  new_book: "本の追加"
-#  editting_book: "本の修正"
-#  update: "本の修正"
-#  create: "本の作成"
 ja:
-  books: "本棚"
-  book:
-    title: "タイトル"
-    memo: "メモ"
-    author: "著者"
-    picture: "写真"
+  activerecord:
+    models:
+      book: "本"
+    attributes:
+      book:
+        title: "タイトル"
+        memo: "メモ"
+        author: "著者"
+        picture: "写真"
   event:
     show: "表示"
     back: "戻る"
     edit: "編集"
     destroy: "削除"
-  response: 
+    show_books: "本の一覧"
     new_book: "本の追加"
     editting_book: "本の修正"
   helpers:
@@ -65,11 +21,9 @@ ja:
       update: "本の更新"
       create: "本の作成"
   notice:
-    book: "本"
-    success: "は確かに"
-    create: "作成されました。"
-    destroy: "消去されました。"
-    update: "更新されました。"
+    create: "%{things}は確かに作成されました。"
+    destroy: "%{things}は確かに消去されました。"
+    update: "%{things}は確かに更新されました。"
   alart:
     confirm: "本当にいいですか？"
     prohibited: "保存できませんでした。"
