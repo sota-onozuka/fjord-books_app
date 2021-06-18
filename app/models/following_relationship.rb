@@ -1,0 +1,2 @@
+class FollowingRelationship < ApplicationRecord
+end
