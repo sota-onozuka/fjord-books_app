@@ -1,0 +1,30 @@
+ja:
+  activerecord:
+    models:
+      book: "本"
+    attributes:
+      book:
+        title: "タイトル"
+        memo: "メモ"
+        author: "著者"
+        picture: "写真"
+  event:
+    show: "表示"
+    back: "戻る"
+    edit: "編集"
+    destroy: "削除"
+    new_book: "本の追加"
+    editting_book: "本の修正"
+  page_titles:
+        books: "本の一覧"
+  helpers:
+    submit:
+      update: "本の更新"
+      create: "本の作成"
+  notice:
+    create: "%{things}は確かに作成されました。"
+    destroy: "%{things}は確かに消去されました。"
+    update: "%{things}は確かに更新されました。"
+  alart:
+    confirm: "本当にいいですか？"
+    prohibited: "保存できませんでした。"
