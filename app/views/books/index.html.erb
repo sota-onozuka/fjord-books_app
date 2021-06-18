@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= t 'event.show_books' %></h1>
+<h1><%= t 'page_tatiles.books' %></h1>
 
 <table>
   <thead>
@@ -20,9 +20,9 @@
         <td><%= book.memo %></td>
         <td><%= book.author %></td>
         <td><%= book.picture %></td>
-        <td><%= link_to "#{t 'event.show'}", book %></td>
-        <td><%= link_to "#{t 'event.edit'}", edit_book_path(book) %></td>
-        <td><%= link_to "#{t 'event.destroy'}", book, method: :delete, data: { confirm: "#{t 'alart.confirm'}" } %></td>
+        <td><%= link_to t('event.show'), book %></td>
+        <td><%= link_to t('event.edit'), edit_book_path(book) %></td>
+        <td><%= link_to t('event.destroy'), book, method: :delete, data: { confirm: "#{t 'alart.confirm'}" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,5 +30,5 @@
 
 <br>
 
-<%= link_to "#{t 'event.new_book'}", new_book_path %>
+<%= link_to t('event.new_book'), new_book_path %>
 <%= Book.model_name.human%>
