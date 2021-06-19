@@ -5,8 +5,15 @@ Rails.application.routes.draw do
   root to: 'books#index' # rootの設定
   resources :books
   resources :users, only: %i(index show)
-
-  devise_scope :user do
-    post '/users/:id/follow' => 'following_relationships#follow'
+  resources :users do
+    member do
+      get :following, :followers
+    end
   end
+
+  resources :following_relationships,       only: [:create, :destroy]
+
+  #devise_scope :user do
+  #  post '/users/:id/follow' => 'following_relationships#follow'
+  #end
 end
