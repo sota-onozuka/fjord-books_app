@@ -9,20 +9,12 @@ class User < ApplicationRecord
   has_many :active_relationships, class_name:  "FollowingRelationship",
                                   foreign_key: "follower_id",
                                   dependent:   :destroy
-  has_many :passive_relationships, class_name:  "Relationship",
+  has_many :passive_relationships, class_name:  "FollowingRelationship",
                                   foreign_key: "followed_id",
                                   dependent:   :destroy
 
   has_many :following, through: :active_relationships, source: :followed # activerelationshipsというテーブルを通して、followedというユーザークラスのインスタンス(source)を複数(has many)参照するようにする
   has_many :followers, through: :passive_relationships, source: :follower
-  #def follow
-  #  following = User.find(params[:id])
-  #  me = current_user
-  #  followingrelationship = FollowingRelationship.new(following_relationship_params)
-  #  puts "うおおおおお"
-  #  followingrelationship.follower_id = following.id
-  #  followingrelationship.following_id = me.id
-  #end
 
     # ユーザーをフォローする
     def follow(other_user)

@@ -22,6 +22,4 @@ class FollowingRelationshipTest < ActiveSupport::TestCase
     @followingrelationship.followed_id = nil
     assert_not @followingrelationship.valid?
   end
-
-
 end
