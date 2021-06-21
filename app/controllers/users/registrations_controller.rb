@@ -70,7 +70,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     '/books'
   end
 
-  # アカウント編集後のリダイレクト先. これだけなぜか行けてる
+  # アカウント編集後のリダイレクト先
   def after_update_path_for(_resource)
     '/books'
   end
