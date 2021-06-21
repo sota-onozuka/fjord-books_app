@@ -36,12 +36,12 @@
 <% if current_user != @user %>
   <% if current_user.following?(@user)%>
     <%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id), html: { method: :delete }) do |f| %>
-      <%= f.submit "Unfollow", class: "btn" %>
+      <%= f.submit User.human_attribute_name(:unfollow), class: "btn" %>
     <% end %>
   <% else %>
     <%= form_with(model: current_user.active_relationships.new) do |f| %>
       <div><%= hidden_field :followed_id, @user.id %></div>
-      <%= f.submit "Follow", class: "btn btn-primary" %>
+      <%= f.submit User.human_attribute_name(:follow), class: "btn btn-primary" %>
     <% end %>
   <% end %>
 <% end %>
@@ -52,13 +52,13 @@
 
 <div>
   <a href="<%= following_user_path(@user) %>">
-  <p>followings</p>
+  <%= User.human_attribute_name(:following)%>
 </a>
   <%= @user.following.count %>
 </div>
 <div>
   <a href="<%= followers_user_path(@user) %>">
-  <p>followers</p>
+  <%= User.human_attribute_name(:followers)%>
   </a>
   <%= @user.followers.count %>
 </div>
