@@ -13,7 +13,7 @@
     <% @users.each do |user| %>
      <tr>
       <td><%= user.name %></td>
-        <td><%= link_to t('views.common.show'), "/users/user/#{user.id}" %></td>
+        <td><%= link_to t('views.common.show'), user_path(user.id) %></td>
       </tr>
     <% end %>
   </tbody>

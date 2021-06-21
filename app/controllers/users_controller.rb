@@ -5,9 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def users
+  def index
     @users = User.all.page(params[:page]).per(3)
   end
-
-  def user; end
 end
