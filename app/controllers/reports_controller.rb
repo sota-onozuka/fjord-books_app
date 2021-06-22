@@ -4,11 +4,12 @@ class ReportsController < ApplicationController
   # GET /reports or /reports.json
   def index
     # ユーザーIDが一致するもののという条件を入れる。
-    @reports = Report.all
+    @reports = Report.where(user_id: params[:user_id])
   end
 
   # GET /reports/1 or /reports/1.json
   def show
+    
   end
 
   # GET /reports/new
@@ -22,11 +23,13 @@ class ReportsController < ApplicationController
 
   # POST /reports or /reports.json
   def create
-    @report = Report.new(report_params)
-
+    @report = current_user.reports.new(report_params)
+    #@report = Report.new(report_params)
+    puts "うおおおおおおおおおおおおおおおおおお"
+    puts report_params
     respond_to do |format|
       if @report.save
-        format.html { redirect_to @report, notice: "Report was successfully created." }
+        format.html { redirect_to user_reports_url, notice: "Report was successfully created." }
         format.json { render :show, status: :created, location: @report }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +42,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to @report, notice: "Report was successfully updated." }
+        format.html { redirect_to user_reports_url, notice: "Report was successfully updated." }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +55,7 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to reports_url, notice: "Report was successfully destroyed." }
+      format.html { redirect_to user_reports_url, notice: "Report was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -60,11 +63,12 @@ class ReportsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_report
-      @report = Report.find(params[:id]) # Couldn't find Report without an ID
+      @user = User.find(params[:user_id])
+      @report = @user.reports.find(params[:id]) # Couldn't find Report without an ID
     end
 
     # Only allow a list of trusted parameters through.
     def report_params
-      params.require(:report).permit(:title, :content)
+      params.require(:report).permit(:title, :content, :user_id)
     end
 end

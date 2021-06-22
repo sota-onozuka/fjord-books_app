@@ -16,9 +16,11 @@
       <tr>
         <td><%= report.title %></td>
         <td><%= report.content %></td>
-        <td><%= link_to 'Show', report %></td>
-        <td><%= link_to 'Edit', edit_report_path(report) %></td>
-        <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', user_report_path(params[:user_id], report.id) %></td>
+        <% if current_user.id.to_s == params[:user_id] %>
+          <td><%= link_to 'Edit', edit_user_report_url(params[:user_id], report.id) %></td>
+          <td><%= link_to 'Destroy', user_reports_path(params[:user_id]), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Report', new_report_path %>
+<%= link_to 'New Report', new_user_report_path %>
