@@ -9,7 +9,11 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
-    
+    if params[:book_id]
+      @comments = Book.find(params[:id]).comments.page(params[:page])
+    else
+      @comments = Report.find(params[:id]).comments.page(params[:page])
+    end
   end
 
   # GET /reports/new
@@ -24,16 +28,12 @@ class ReportsController < ApplicationController
   # POST /reports or /reports.json
   def create
     @report = current_user.reports.new(report_params)
-    #@report = Report.new(report_params)
-    puts "うおおおおおおおおおおおおおおおおおお"
     puts report_params
     respond_to do |format|
       if @report.save
         format.html { redirect_to user_reports_url, notice: "Report was successfully created." }
-        format.json { render :show, status: :created, location: @report }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
+        format.html { render new_user_reports_url, status: :unprocessable_entity }
       end
     end
   end
@@ -64,7 +64,7 @@ class ReportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_report
       @user = User.find(params[:user_id])
-      @report = @user.reports.find(params[:id]) # Couldn't find Report without an ID
+      @report = @user.reports.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   has_many :reports, class_name: 'Report', dependent: :destroy
 
+  has_many :comments, class_name: 'Comment', dependent: :destroy
+
   has_one_attached :avatar
 
   def following?(user)

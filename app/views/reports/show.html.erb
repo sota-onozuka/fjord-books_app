@@ -10,10 +10,15 @@
   <%= @report.content %>
 </p>
 
-<span class="user"><%= link_to @report.user.name, @report.user %></span>
+<span class="user">投稿者 <%= link_to @report.user.name, @report.user %></span>
 <span class="timestamp">
-  Posted <%= time_ago_in_words(@report.created_at) %> ago.
+  Posted at <%= @report.created_at.strftime('%Y/%m/%d %H:%M:%S') %> 
 </span>
+
+
+<%= render 'comments/comment', comments: @comments %>
+
+<%= render 'comments/form', comment: @report.comments.new %>
 
 
 <%= link_to 'Edit', edit_user_report_path(params[:user_id], @report.id) %> |
