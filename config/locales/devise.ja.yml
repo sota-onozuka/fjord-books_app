@@ -13,7 +13,7 @@ ja:
       locked: "お使いのアカウントはロックされました。"
       last_attempt: "You have one more attempt before your account is locked."
       not_found_in_database: "Invalid %{authentication_keys} or password."
-      timeout: "Your session expired. Please sign in again to continue."
+      timeout: "セッションの期限が切れました。再度ログインしてください"
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
@@ -69,3 +69,4 @@ ja:
     login: "ログイン"
     logout: "ログアウト"
     logged_in_as: "ログインネーム: "
+    users: "ユーザー一覧"
