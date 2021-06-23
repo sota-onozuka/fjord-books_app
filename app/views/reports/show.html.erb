@@ -1,18 +1,19 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
+  <strong><%= Report.human_attribute_name(:title) %></strong>
   <%= @report.title %>
 </p>
 
 <p>
-  <strong>Content:</strong>
+  <strong><%= Report.human_attribute_name(:content) %></strong>
   <%= @report.content %>
 </p>
 
-<span class="user">投稿者 <%= link_to @report.user.name, @report.user %></span>
+<span class="user"><%= t 'views.common.created_by' %> <%= link_to @report.user.name, @report.user %></span>
 <span class="timestamp">
-  Posted at <%= @report.created_at.strftime('%Y/%m/%d %H:%M:%S') %> 
+  <%= t 'views.common.posting_time' %> 
+  <%= @report.created_at.strftime('%Y/%m/%d %H:%M:%S') %> 
 </span>
 
 
@@ -21,5 +22,5 @@
 <%= render 'comments/form', comment: @report.comments.new %>
 
 
-<%= link_to 'Edit', edit_user_report_path(params[:user_id], @report.id) %> |
-<%= link_to 'Back', user_reports_path %>
+<%= link_to t('views.common.edit'), edit_user_report_path(params[:user_id], @report.id) %> |
+<%= link_to t('views.common.back'), user_reports_path %>

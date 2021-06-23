@@ -1,9 +1,9 @@
 <table>
   <thead>
     <tr>
-      <th>コメント</th>
-      <th>name</th>
-      <th>時間</th>
+      <th><%= Comment.model_name.human %></th>
+      <th><%= User.human_attribute_name(:name) %></th>
+      <th><%= t 'views.common.posting_time' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

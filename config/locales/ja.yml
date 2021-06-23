@@ -212,12 +212,15 @@ ja:
       destroy: 削除
       new: 新規作成
       back: 戻る
+      cancel: キャンセル
       delete_confirm: よろしいですか？
       title_new: "%{name}の新規作成"
       title_edit: "%{name}の編集"
       title_show: "%{name}の詳細"
       sign_out: ログアウト
+      posting_time: "投稿時間"
       minimum_length: "%{length}文字以上"
+      created_by: "投稿者"
     pagination:
       first: '最初'
       last: '最後'
