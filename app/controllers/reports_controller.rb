@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ReportsController < ApplicationController
-  before_action :set_report, only: %i[ show edit update destroy ]
+  before_action :set_report, only: %i[show edit update destroy]
 
   # GET /reports or /reports.json
   def index
@@ -9,11 +11,11 @@ class ReportsController < ApplicationController
 
   # GET /reports/1 or /reports/1.json
   def show
-    if params[:book_id]
-      @comments = Book.find(params[:id]).comments.page(params[:page])
-    else
-      @comments = Report.find(params[:id]).comments.page(params[:page])
-    end
+    @comments = if params[:book_id]
+                  Book.find(params[:id]).comments.page(params[:page])
+                else
+                  Report.find(params[:id]).comments.page(params[:page])
+                end
   end
 
   # GET /reports/new
@@ -22,16 +24,14 @@ class ReportsController < ApplicationController
   end
 
   # GET /reports/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /reports or /reports.json
   def create
     @report = current_user.reports.new(report_params)
-    puts report_params
     respond_to do |format|
       if @report.save
-        format.html { redirect_to user_reports_url, notice: "Report was successfully created." }
+        format.html { redirect_to user_reports_url, notice: 'Report was successfully created.' }
       else
         format.html { render new_user_reports_url, status: :unprocessable_entity }
       end
@@ -42,7 +42,7 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to user_reports_url, notice: "Report was successfully updated." }
+        format.html { redirect_to user_reports_url, notice: 'Report was successfully updated.' }
         format.json { render :show, status: :ok, location: @report }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,20 +55,21 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to user_reports_url, notice: "Report was successfully destroyed." }
+      format.html { redirect_to user_reports_url, notice: 'Report was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_report
-      @user = User.find(params[:user_id])
-      @report = @user.reports.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def report_params
-      params.require(:report).permit(:title, :content, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_report
+    @user = User.find(params[:user_id])
+    @report = @user.reports.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def report_params
+    params.require(:report).permit(:title, :content, :user_id)
+  end
 end

@@ -65,6 +65,6 @@ gem 'kaminari'
 
 gem 'image_processing', '~> 1.2'
 group :development, :test do
-  gem 'pry-rails'
   gem 'pry-byebug'
+  gem 'pry-rails'
 end
