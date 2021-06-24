@@ -9,3 +9,15 @@ ja:
         memo: メモ  #g
         picture: 画像  #g
         title: 題名  #g
+      user:
+        name: '名前'
+        email: 'メールアドレス'
+        address: '住所'
+        profile: '自己紹介文'
+        zipcode: '郵便番号'
+        password: 'パスワード'
+  collections:
+    books: "本一覧"
+
+  titles:
+    user_page: "詳細プロフィール"
