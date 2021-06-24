@@ -12,7 +12,11 @@
     <% comments.each do |comment| %>
       <tr>
         <td><%= comment.body %></td>
-        <td><%= link_to comment.user.name, comment.user %></td>
+        <% if comment.user.name == "" %>
+          <td><%= link_to comment.user.email, comment.user %></td>
+        <% else %>
+         <td><%= link_to comment.user.name, comment.user %></td>
+        <% end %>
         <td><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
       </tr>
     <% end %>
