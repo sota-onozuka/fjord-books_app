@@ -6,7 +6,7 @@ class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-  test "#name_or_email" do
+  test '#name_or_email' do
     user = User.new(email: 'foo@example.com', name: '')
     assert_equal 'foo@example.com', user.name_or_email
 
@@ -14,7 +14,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 'Foo Bar', user.name_or_email
   end
 
-  test "#follow" do
+  test '#follow' do
     me = User.create!(email: 'me@example.com', password: 'password1')
     she = User.create!(email: 'she@example.com', password: 'password2')
     assert_not me.following?(she)
@@ -22,7 +22,7 @@ class UserTest < ActiveSupport::TestCase
     assert me.following?(she)
   end
 
-  test "#unfollow" do
+  test '#unfollow' do
     me = User.create!(email: 'me@example.com', password: 'password1')
     she = User.create!(email: 'she@example.com', password: 'password2')
     assert_not me.following?(she)
@@ -32,23 +32,23 @@ class UserTest < ActiveSupport::TestCase
     assert_not me.following?(she)
   end
 
-  test "#following?" do
+  test '#following?' do
     me = User.create!(email: 'me@example.com', password: 'password1')
     she = User.create!(email: 'she@example.com', password: 'password2')
     me.follow(she)
-    assert me.following?(she) #true 正常系？
-    assert_not she.following?(me) #false
+    assert me.following?(she) # true
+    assert_not she.following?(me) # false
     me.unfollow(she)
-    assert_not me.following?(she) #true 正常系？
+    assert_not me.following?(she) # true
   end
 
-  test "#followed_by?" do
+  test '#followed_by?' do
     me = User.create!(email: 'me@example.com', password: 'password1')
     she = User.create!(email: 'she@example.com', password: 'password2')
     me.follow(she)
-    assert she.followed_by?(me) #true 正常系？
-    assert_not me.followed_by?(she) #false
+    assert she.followed_by?(me) # true 正常系
+    assert_not me.followed_by?(she) # false 異常系
     me.unfollow(she)
-    assert_not she.followed_by?(me) #true 正常系？
+    assert_not she.followed_by?(me) # true 正常系
   end
 end
