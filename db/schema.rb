@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 2021_06_18_083745) do
     t.string "picture"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "commentable_type", null: false
+    t.integer "commentable_id", null: false
+    t.string "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "following_relationships", force: :cascade do |t|
     t.integer "followed_id"
     t.integer "follower_id"
@@ -57,6 +68,24 @@ ActiveRecord::Schema.define(version: 2021_06_18_083745) do
     t.index ["followed_id"], name: "index_following_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_following_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_following_relationships_on_follower_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "following_id", null: false
+    t.integer "follower_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true
+    t.index ["following_id"], name: "index_relationships_on_following_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -77,4 +106,6 @@ ActiveRecord::Schema.define(version: 2021_06_18_083745) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "users"
+  add_foreign_key "reports", "users"
 end
