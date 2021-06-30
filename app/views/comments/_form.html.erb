@@ -1,12 +1,12 @@
 <% if @book %>
   <% rdpath = book_comments_path(@book.id) %>
 <% else %>
-  <% rdpath = user_report_comments_path(@user.id, @report.id) %>
+  <% rdpath = report_comments_path(@report.id) %>
 <% end %>
 <%= form_for(comment, url: rdpath) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+      <h2><%= pluralize(comment.errors.count, "error") %><%= t errors.messages.invalid_saving%></h2>
       <ul>
         <% book.errors.full_messages.each do |message| %>
           <li><%= message %></li>

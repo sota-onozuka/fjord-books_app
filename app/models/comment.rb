@@ -2,5 +2,5 @@
 
 class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
-  belongs_to :user, class_name: 'User', dependent: :destroy
+  belongs_to :user
 end

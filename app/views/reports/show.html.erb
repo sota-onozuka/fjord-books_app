@@ -13,7 +13,7 @@
 <span class="user"><%= t 'views.common.created_by' %> <%= link_to @report.user.name, @report.user %></span>
 <span class="timestamp">
   <%= t 'views.common.posting_time' %> 
-  <%= @report.created_at.strftime('%Y/%m/%d %H:%M:%S') %> 
+  <%= I18n.l(@report.created_at, format: :short) %> 
 </span>
 
 
@@ -22,5 +22,5 @@
 <%= render 'comments/form', comment: @report.comments.new %>
 
 
-<%= link_to t('views.common.edit'), edit_user_report_path(params[:user_id], @report.id) %> |
-<%= link_to t('views.common.back'), user_reports_path %>
+<%= link_to t('views.common.edit'), edit_report_path(@report.id) %> |
+<%= link_to t('views.common.back'), reports_path %>

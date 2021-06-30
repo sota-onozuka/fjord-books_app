@@ -2,5 +2,5 @@
 
 <%= render 'form', report: @report %>
 
-<%= link_to t('views.common.cancel'), user_report_path(@user.id) %> |
-<%= link_to t('views.common.back'), user_reports_path %>
+<%= link_to t('views.common.cancel'), report_path(:id) %> |
+<%= link_to t('views.common.back'), reports_path %>

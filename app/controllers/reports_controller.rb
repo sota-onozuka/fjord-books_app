@@ -5,17 +5,16 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    # ユーザーIDが一致するもののという条件を入れる。
-    @reports = Report.where(user_id: params[:user_id])
+    @reports = Report.all #where(user_id: params[:user_id])
+    if params[:user_id]
+      user = User.find(params[:user_id])
+      @reports = user.reports
+    end
   end
 
   # GET /reports/1 or /reports/1.json
   def show
-    @comments = if params[:book_id]
-                  Book.find(params[:id]).comments.page(params[:page])
-                else
-                  Report.find(params[:id]).comments.page(params[:page])
-                end
+    @comments = Report.find(params[:id]).comments.page(params[:page])
   end
 
   # GET /reports/new
@@ -31,7 +30,7 @@ class ReportsController < ApplicationController
     @report = current_user.reports.new(report_params)
     respond_to do |format|
       if @report.save
-        format.html { redirect_to user_reports_url, notice: 'Report was successfully created.' }
+        format.html { redirect_to reports_url, notice: t('controllers.common.notice_create', name: Report.model_name.human) }
       else
         format.html { render new_user_reports_url, status: :unprocessable_entity }
       end
@@ -42,11 +41,9 @@ class ReportsController < ApplicationController
   def update
     respond_to do |format|
       if @report.update(report_params)
-        format.html { redirect_to user_reports_url, notice: 'Report was successfully updated.' }
-        format.json { render :show, status: :ok, location: @report }
+        format.html { redirect_to reports_url, notice: t('controllers.common.notice_update', name: Report.model_name.human) }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,8 +52,7 @@ class ReportsController < ApplicationController
   def destroy
     @report.destroy
     respond_to do |format|
-      format.html { redirect_to user_reports_url, notice: 'Report was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to reports_url, notice: t('controllers.common.notice_destroy', name: Report.model_name.human) }
     end
   end
 
@@ -64,8 +60,8 @@ class ReportsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_report
-    @user = User.find(params[:user_id])
-    @report = @user.reports.find(params[:id])
+    # @user = User.find(params[:user_id])
+    @report = Report.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

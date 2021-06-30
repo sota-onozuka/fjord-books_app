@@ -1,4 +1,4 @@
-<%= link_to t('views.common.title_new', name: Report.model_name.human), new_user_report_path(current_user.id)%>
+<%= link_to t('views.common.title_new', name: Report.model_name.human), new_report_path%>
 
 <h1><%= User.model_name.human %></h1>
 <%= render 'users/users', users: @users %>

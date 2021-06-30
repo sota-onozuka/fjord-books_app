@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'books#index'
   resources :books do
-    resources :comments
+    scope module: :books do
+      resources :comments, only: [:create]
+    end
   end
   resources :users, only: %i[index show] do
     resource :relationships, only: %i[create destroy]
@@ -14,9 +16,9 @@ Rails.application.routes.draw do
       resources :followers, only: [:index]
     end
   end
-  resources :users do
-    resources :reports do
-      resources :comments, only: [:new, :create, :edit,:update, :destroy]
+  resources :reports do
+    scope module: :reports do
+      resources :comments, only: [:create]
     end
   end
 end

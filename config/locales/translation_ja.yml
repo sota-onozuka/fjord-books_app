@@ -26,3 +26,5 @@ ja:
   titles:
     books: 本の一覧
     reports: "日報一覧"
+  propaties:
+    reports: "%{name}さんの日報一覧"

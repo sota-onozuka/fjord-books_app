@@ -52,6 +52,13 @@
   <%= link_to t('views.common.edit'), edit_user_registration_path %> |
 <% end %>
 
-<%= link_to t('titles.reports'), user_reports_path(@user.id) %>
+<% if @user.name == "" %>
+  <% name = @user.email %>
+<% else %>
+  <% name = @user.name %>
+<% end %>
+
+
+<%= link_to t('propaties.reports', name: name), reports_path(user_id: @user.id) %>
 
 <%= link_to t('views.common.back'), users_path %>
