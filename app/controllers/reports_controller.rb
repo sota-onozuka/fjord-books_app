@@ -5,10 +5,10 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.all #where(user_id: params[:user_id])
+    @reports = Report.all.page(params[:page]) #where(user_id: params[:user_id])
     if params[:user_id]
       user = User.find(params[:user_id])
-      @reports = user.reports
+      @reports = user.reports.page(params[:page])
     end
   end
 
@@ -60,7 +60,6 @@ class ReportsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_report
-    # @user = User.find(params[:user_id])
     @report = Report.find(params[:id])
   end
 

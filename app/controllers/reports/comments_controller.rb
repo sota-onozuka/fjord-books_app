@@ -7,19 +7,14 @@ class Reports::CommentsController < ApplicationController
     @comments = @report.comments.page(params[:page])
     @comment = @report.comments.new(comment_params)
     @comment.user = current_user
-    rd = set_redirection_path
+    rd = report_url(params[:report_id])
     respond_to do |format|
       if @comment.save
         format.html { redirect_to rd, notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
       else
-        flash[:alert] = t('errors.messages.invald_creation')
-        format.html { render "~/fjord-books_app/app/views/reports/show.html.erb", comments: @comments}
+        format.html { redirect_to rd, notice: t('errors.messages.invald_creation') }
       end
     end
-  end
-
-  def set_redirection_path
-    report_url(params[:report_id])
   end
 
   def comment_params
