@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Reports::CommentsController < ApplicationController
-
   def create
     @report = Report.find(params[:report_id])
     @comments = @report.comments.page(params[:page])

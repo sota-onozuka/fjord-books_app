@@ -5,11 +5,10 @@ class ReportsController < ApplicationController
 
   # GET /reports or /reports.json
   def index
-    @reports = Report.all.page(params[:page]) #where(user_id: params[:user_id])
-    if params[:user_id]
-      user = User.find(params[:user_id])
-      @reports = user.reports.page(params[:page])
-    end
+    return @reports = Report.all.page(params[:page]) unless params[:user_id]
+
+    user = User.find(params[:user_id])
+    @reports = user.reports.page(params[:page])
   end
 
   # GET /reports/1 or /reports/1.json
@@ -32,7 +31,7 @@ class ReportsController < ApplicationController
       if @report.save
         format.html { redirect_to reports_url, notice: t('controllers.common.notice_create', name: Report.model_name.human) }
       else
-        format.html { render new_user_reports_url, status: :unprocessable_entity }
+        format.html { render new_report_url, status: :unprocessable_entity }
       end
     end
   end
@@ -65,6 +64,6 @@ class ReportsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def report_params
-    params.require(:report).permit(:title, :content, :user_id)
+    params.require(:report).permit(:title, :content)
   end
 end
