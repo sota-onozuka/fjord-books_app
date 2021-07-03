@@ -8,9 +8,7 @@ class BooksTest < ApplicationSystemTestCase
     visit root_path
     fill_in 'Eメール', with: 'alice@example.com'
     fill_in 'パスワード', with: 'password'
-    click_button 'ログイン' # ボタンクラスを探す
-    # click_link 'ログイン' aタグを探す
-    # click_on 'ログイン'
+    click_button 'ログイン'
   end
 
   test 'visiting the index' do

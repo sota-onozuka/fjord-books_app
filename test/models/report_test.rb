@@ -7,10 +7,6 @@ class ReportTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  def editable?(target_user)
-    user == target_user
-  end
-
   test '#created_on' do
     me = User.create!(email: 'me@example.com', password: 'password1')
     report = Report.create!(title: 'testtitle', content: 'testcontent', user_id: me.id)

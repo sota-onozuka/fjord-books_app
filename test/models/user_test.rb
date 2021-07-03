@@ -36,19 +36,19 @@ class UserTest < ActiveSupport::TestCase
     me = User.create!(email: 'me@example.com', password: 'password1')
     she = User.create!(email: 'she@example.com', password: 'password2')
     me.follow(she)
-    assert me.following?(she) # true
-    assert_not she.following?(me) # false
+    assert me.following?(she)
+    assert_not she.following?(me)
     me.unfollow(she)
-    assert_not me.following?(she) # true
+    assert_not me.following?(she)
   end
 
   test '#followed_by?' do
     me = User.create!(email: 'me@example.com', password: 'password1')
     she = User.create!(email: 'she@example.com', password: 'password2')
     me.follow(she)
-    assert she.followed_by?(me) # true 正常系
-    assert_not me.followed_by?(she) # false 異常系
+    assert she.followed_by?(me)
+    assert_not me.followed_by?(she)
     me.unfollow(she)
-    assert_not she.followed_by?(me) # true 正常系
+    assert_not she.followed_by?(me)
   end
 end
