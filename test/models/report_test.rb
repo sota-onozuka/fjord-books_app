@@ -3,10 +3,6 @@
 require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   test '#created_on' do
     me = User.create!(email: 'me@example.com', password: 'password1')
     report = Report.create!(title: 'testtitle', content: 'testcontent', user_id: me.id)
