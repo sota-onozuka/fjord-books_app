@@ -18,6 +18,7 @@
 
 
 <%= render 'comments/comment', comments: @comments %>
+<%= paginate @comments %>
 
 <%= render 'comments/form', comment: @report.comments.new %>
 
