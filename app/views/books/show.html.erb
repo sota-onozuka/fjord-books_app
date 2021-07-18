@@ -21,6 +21,7 @@
 </p>
 
 <%= render 'comments/comment', comments: @comments %>
+<%= paginate @comments %>
 
 <%= render 'comments/form', comment: @book.comments.new %>
 

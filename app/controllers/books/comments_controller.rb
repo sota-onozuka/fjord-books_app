@@ -2,16 +2,14 @@
 
 class Books::CommentsController < ApplicationController
   def create
-    @book = Book.find(params[:book_id])
-    @comments = @book.comments.page(params[:page])
-    @comment = @book.comments.new(comment_params)
-    @comment.user = current_user
-    rd = book_url(params[:book_id])
+    book = Book.find(params[:book_id])
+    comment = book.comments.new(comment_params)
+    comment.user = current_user
     respond_to do |format|
-      if @comment.save
-        format.html { redirect_to rd, notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
+      if comment.save
+        format.html { redirect_to book_url(params[:book_id]), notice: t('controllers.common.notice_create', name: Comment.model_name.human) }
       else
-        format.html { redirect_to rd, notice: t('errors.messages.invald_creation') }
+        format.html { redirect_to book_url(params[:book_id]), notice: t('errors.messages.invald_creation') }
       end
     end
   end
