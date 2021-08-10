@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:title) %></strong>
+  <%= @report.title %>
+</p>
+
+<p>
+  <strong><%= Report.human_attribute_name(:content) %></strong>
+  <%= @report.content %>
+</p>
+
+<span class="user"><%= t 'views.common.created_by' %> <%= link_to @report.user.name, @report.user %></span>
+<span class="timestamp">
+  <%= t 'views.common.posting_time' %> 
+  <%= I18n.l(@report.created_at, format: :short) %> 
+</span>
+
+
+<%= render 'comments/comment', comments: @comments %>
+<%= paginate @comments %>
+
+<%= render 'comments/form', comment: @report.comments.new %>
+
+
+<%= link_to t('views.common.edit'), edit_report_path(@report.id) %> |
+<%= link_to t('views.common.back'), reports_path %>

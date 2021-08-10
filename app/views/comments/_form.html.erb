@@ -1,0 +1,26 @@
+<% if @book %>
+  <% rdpath = book_comments_path(@book.id) %>
+<% else %>
+  <% rdpath = report_comments_path(@report.id) %>
+<% end %>
+<%= form_for(comment, url: rdpath) do |form| %>
+  <% if comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comment.errors.count, "error") %><%= t errors.messages.invalid_saving%></h2>
+      <ul>
+        <% book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>
